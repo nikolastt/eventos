@@ -3,6 +3,7 @@ import "./login.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebase from "../../config/firebase";
 import "firebase/auth";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -86,9 +87,9 @@ function Login() {
             Recuperar senha
           </a>
           <span className="text-white">&#9733;</span>
-          <a href="/" className="mx-2">
+          <Link to="novousuario" className="mx-2">
             Quero cadastrar
-          </a>
+          </Link>
         </div>
       </form>
     </div>
