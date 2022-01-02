@@ -3,18 +3,24 @@ import "./login.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebase from "../../config/firebase";
 import "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import NavBar from "../../components/navbar";
+
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [msgTipo, setMsgTipo] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function logar() {
     const auth = getAuth(firebase);
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
+        dispatch({ type: "LOG_IN", usuarioEmail: email });
         setMsgTipo("sucesso");
         // Signed in
         // const user = userCredential.user;
@@ -30,6 +36,8 @@ function Login() {
 
   return (
     <>
+      {useSelector((state) => state.usuarioLogado) > 0 ? navigate("/") : null}
+
       <NavBar />
       <div className="login-content d-flex align-items-center ">
         <form className="mx-auto w-35">
@@ -90,7 +98,7 @@ function Login() {
               Recuperar senha
             </a>
             <span className="text-white">&#9733;</span>
-            <Link to="novousuario" className="mx-2">
+            <Link to="/novousuario" className="mx-2">
               Quero cadastrar
             </Link>
           </div>

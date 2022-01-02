@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav class="navbar navbar-expand-lg ">
-      <div class="container-fluid">
+    <nav className="navbar navbar-expand-lg ">
+      <div className="container-fluid">
         <span className="navbar-title text-white  " href="#">
           Eventos
         </span>
 
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
@@ -19,7 +19,7 @@ function NavBar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <i class="fas fa-bars text-white"></i>{" "}
+          <i className="fas fa-bars text-white"></i>{" "}
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav nav-item">

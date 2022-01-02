@@ -96,8 +96,8 @@ function NovoUsuario() {
 
           {load ? (
             <div className="spinner mt-3  text-center">
-              <div class="spinner-grow  text-dark" role="status">
-                <span class="visually-hidden">Loading...</span>
+              <div className="spinner-grow  text-dark" role="status">
+                <span className="visually-hidden">Loading...</span>
               </div>
             </div>
           ) : (
