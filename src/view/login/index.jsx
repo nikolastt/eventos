@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
+  const [msgTipo, setMsgTipo] = useState();
+
+  function logar() {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, senha)
+      .then((userCredential) => {
+        setMsgTipo("sucesso");
+        // // Signed in
+        // const user = userCredential.user;
+        // // ...
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        setMsgTipo("erro");
+      });
+  }
+
   return (
     <div className="login-content d-flex align-items-center ">
       <form className="mx-auto">
@@ -17,6 +38,7 @@ function Login() {
         </div>
 
         <input
+          onChange={(e) => setEmail(e.target.value)}
           type="email"
           className="form-control my-2"
           id="floatingInput"
@@ -24,34 +46,44 @@ function Login() {
         />
 
         <input
-          type="senha"
+          onChange={(e) => setSenha(e.target.value)}
+          type="password"
           className="form-control my-2"
           id="floatingPassword"
           placeholder="Password"
         />
 
-        <button className="w-100 btn btn-lg btn-login" type="submit">
-          Sign in
+        <button
+          onClick={logar}
+          className="w-100 btn btn-lg btn-login"
+          type="button"
+        >
+          Logar
         </button>
 
         <div className="msg-login text-white text-center my-5 ">
-          <span>
-            <strong>WoW!</strong> Você está conectado.
-            <span className="fs-4"> &#128526;</span>
-          </span>
-          <br />
-          <span>
-            <strong>Ops!</strong> Verifique se a senha e usuário estão corretos.
-            <span className="fs-4"> &#128546;</span>
-          </span>
+          {msgTipo === "sucesso" && (
+            <span>
+              <strong>WoW!</strong> Você está conectado.
+              <span className="fs-4"> &#128526;</span>
+            </span>
+          )}
+
+          {msgTipo === "erro" && (
+            <span>
+              <strong>Ops!</strong> Verifique se a senha e usuário estão
+              corretos.
+              <span className="fs-4"> &#128546;</span>
+            </span>
+          )}
         </div>
 
         <div className="opcoes-login text-center">
-          <a href="#" className="mx-2">
+          <a href="/" className="mx-2">
             Recuperar senha
           </a>
           <span className="text-white">&#9733;</span>
-          <a href="#" className="mx-2">
+          <a href="/" className="mx-2">
             Quero cadastrar
           </a>
         </div>
