@@ -4,6 +4,7 @@ import "./usuario-novo.css";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 import firebase from "../../config/firebase";
+import NavBar from "../../components/navbar";
 
 function NovoUsuario() {
   const [email, setEmail] = useState();
@@ -62,68 +63,71 @@ function NovoUsuario() {
   }
 
   return (
-    <div className="login-content d-flex align-items-center ">
-      <form className="mx-auto w-50">
-        <div className="text-center mb-4">
-          {/* <img
+    <>
+      <NavBar />
+      <div className="login-content d-flex align-items-center ">
+        <form className="mx-auto w-50">
+          <div className="text-center mb-4">
+            {/* <img
         className="mb-4"
         src="/docs/5.1/assets/brand/bootstrap-logo.svg"
         alt=""
         width="72"
         height="57"
       /> */}
-          <h1 className="h3 mb-3 fw-normal text-white fw-bold">Cadastro</h1>
-        </div>
-
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          className="form-control  my-2"
-          id="floatingInput"
-          placeholder="e-mail"
-        />
-
-        <input
-          onChange={(e) => setSenha(e.target.value)}
-          type="password"
-          className="form-control my-2"
-          id="floatingPassword"
-          placeholder="Senha"
-        />
-
-        {load ? (
-          <div className="spinner mt-3  text-center">
-            <div class="spinner-grow  text-dark" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
+            <h1 className="h3 mb-3 fw-normal text-white fw-bold">Cadastro</h1>
           </div>
-        ) : (
-          <button
-            onClick={Cadastrar}
-            className="w-100 mt-3 btn btn-lg btn-login"
-            type="button"
-          >
-            Cadastrar
-          </button>
-        )}
 
-        <div className="msg-login text-white text-center mt-2 ">
-          {msgTipo === "sucesso" && (
-            <span>
-              <strong>WoW!</strong> Usuário cadstrado!
-              <span className="fs-4"> &#128526;</span>
-            </span>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className="form-control  my-2"
+            id="floatingInput"
+            placeholder="e-mail"
+          />
+
+          <input
+            onChange={(e) => setSenha(e.target.value)}
+            type="password"
+            className="form-control my-2"
+            id="floatingPassword"
+            placeholder="Senha"
+          />
+
+          {load ? (
+            <div className="spinner mt-3  text-center">
+              <div class="spinner-grow  text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={Cadastrar}
+              className="w-100 mt-3 btn btn-lg btn-login"
+              type="button"
+            >
+              Cadastrar
+            </button>
           )}
 
-          {msgTipo === "erro" && (
-            <span>
-              <strong>Ops!</strong> {msg}
-              <span className="fs-4"> &#128546;</span>
-            </span>
-          )}
-        </div>
-      </form>
-    </div>
+          <div className="msg-login text-white text-center mt-2 ">
+            {msgTipo === "sucesso" && (
+              <span>
+                <strong>WoW!</strong> Usuário cadstrado!
+                <span className="fs-4"> &#128526;</span>
+              </span>
+            )}
+
+            {msgTipo === "erro" && (
+              <span>
+                <strong>Ops!</strong> {msg}
+                <span className="fs-4"> &#128546;</span>
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
