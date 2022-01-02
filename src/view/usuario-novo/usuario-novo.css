@@ -25,3 +25,7 @@
 .opcoes-login a:hover {
   color: #f21667;
 }
+
+.spinner {
+  padding: 26px;
+}

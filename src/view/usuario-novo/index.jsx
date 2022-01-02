@@ -10,11 +10,14 @@ function NovoUsuario() {
   const [senha, setSenha] = useState();
   const [msgTipo, setMsgTipo] = useState();
   const [msg, setMsg] = useState();
+  const [load, setLoad] = useState(false);
 
   async function Cadastrar() {
     setMsgTipo(null);
+    setLoad(true);
 
     if (!email && !senha) {
+      setLoad(false);
       setMsgTipo("erro");
       setMsg("Você precisa informar o email e senha para fazer o cadastro!");
       return;
@@ -23,6 +26,7 @@ function NovoUsuario() {
     const auth = getAuth(firebase);
     createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
+        setLoad(false);
         // Signed in
         const user = userCredential.user;
         console.log(user);
@@ -30,6 +34,7 @@ function NovoUsuario() {
         // ...
       })
       .catch((error) => {
+        setLoad(false);
         setMsgTipo("erro");
         const errorMessage = error.message;
         console.log(error);
@@ -86,13 +91,21 @@ function NovoUsuario() {
           placeholder="Senha"
         />
 
-        <button
-          onClick={Cadastrar}
-          className="w-100 mt-3 btn btn-lg btn-login"
-          type="button"
-        >
-          Cadastrar
-        </button>
+        {load ? (
+          <div className="spinner mt-3  text-center">
+            <div class="spinner-grow  text-dark" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <button
+            onClick={Cadastrar}
+            className="w-100 mt-3 btn btn-lg btn-login"
+            type="button"
+          >
+            Cadastrar
+          </button>
+        )}
 
         <div className="msg-login text-white text-center mt-2 ">
           {msgTipo === "sucesso" && (

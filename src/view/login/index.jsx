@@ -13,8 +13,9 @@ function Login() {
     const auth = getAuth(firebase);
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
+        setMsgTipo("sucesso");
         // Signed in
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // ...
       })
       .catch((error) => {
@@ -27,7 +28,7 @@ function Login() {
 
   return (
     <div className="login-content d-flex align-items-center ">
-      <form className="mx-auto">
+      <form className="mx-auto w-35">
         <div className="text-center mb-4">
           {/* <img
             className="mb-4"
