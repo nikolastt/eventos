@@ -1,7 +1,11 @@
 import Login from "./view/login";
+import NovoUsuario from "./view/usuario-novo";
 
 function App() {
-  return <Login />;
+  return (
+    // <Login />
+    <NovoUsuario />
+  );
 }
 
 export default App;

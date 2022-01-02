@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./login.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase from "../../config/firebase";
+import "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -8,15 +10,15 @@ function Login() {
   const [msgTipo, setMsgTipo] = useState();
 
   function logar() {
-    const auth = getAuth();
+    const auth = getAuth(firebase);
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
-        setMsgTipo("sucesso");
-        // // Signed in
-        // const user = userCredential.user;
-        // // ...
+        // Signed in
+        const user = userCredential.user;
+        // ...
       })
       .catch((error) => {
+        alert(error.message);
         // const errorCode = error.code;
         // const errorMessage = error.message;
         setMsgTipo("erro");
