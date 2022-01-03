@@ -3,7 +3,7 @@ import "./login.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebase from "../../config/firebase";
 import "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import NavBar from "../../components/navbar";
 
@@ -14,7 +14,7 @@ function Login() {
   const [senha, setSenha] = useState();
   const [msgTipo, setMsgTipo] = useState();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function logar() {
     const auth = getAuth(firebase);
@@ -36,19 +36,14 @@ function Login() {
 
   return (
     <>
-      {useSelector((state) => state.usuarioLogado) > 0 ? navigate("/") : null}
+      {useSelector((state) => state.usuarioLogado) > 0 ? (
+        <Navigate to="/" />
+      ) : null}
 
       <NavBar />
       <div className="login-content d-flex align-items-center ">
         <form className="mx-auto w-35">
           <div className="text-center mb-4">
-            {/* <img
-            className="mb-4"
-            src="/docs/5.1/assets/brand/bootstrap-logo.svg"
-            alt=""
-            width="72"
-            height="57"
-          /> */}
             <h1 className="h3 mb-3 fw-normal text-white fw-bold">Login</h1>
           </div>
 
@@ -94,9 +89,9 @@ function Login() {
           </div>
 
           <div className="opcoes-login text-center">
-            <a href="/" className="mx-2">
+            <Link to="/recuperar-senha" className="mx-2">
               Recuperar senha
-            </a>
+            </Link>
             <span className="text-white">&#9733;</span>
             <Link to="/novousuario" className="mx-2">
               Quero cadastrar
