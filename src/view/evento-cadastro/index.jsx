@@ -4,6 +4,7 @@ import NavBar from "../../components/navbar";
 import "./evento-cadastro.css";
 import { useSelector } from "react-redux";
 import { ref, getStorage, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 function EventoCadastro() {
   const [msgTipo, setMsgTipo] = useState();
@@ -16,13 +17,35 @@ function EventoCadastro() {
   const usuarioEmail = useSelector((state) => state.usuarioEmail);
 
   const storage = getStorage(firebase);
-  const db = firebase.firestore;
+  const db = getFirestore(firebase);
 
-  async function PublicarEvento() {
-    const fotoRef = ref(storage, `imagens/${foto.name}`);
-    await uploadBytes(fotoRef, foto);
-    const url = getDownloadURL(fotoRef);
-    console.log(url);
+  function PublicarEvento() {
+    const fotoRef = ref(storage, `imagens/vacas/${foto.name || "semImagem"} `);
+    uploadBytes(fotoRef, foto)
+      .then((resposta) => {
+        const url = getDownloadURL(fotoRef).then((url) => {
+          console.log(url);
+        });
+
+        const docRef = addDoc(collection(db, "eventos"), {
+          titulo,
+          tipo,
+          descricao,
+          data,
+          hora,
+          foto: foto.name,
+          usuarioEmail: usuarioEmail,
+          visitantes: 0,
+        }).catch((error) => setMsgTipo("error"));
+
+        console.log(usuarioEmail);
+        console.log("teste");
+        console.log(resposta);
+        setMsgTipo("sucesso");
+      })
+      .catch((error) => {
+        setMsgTipo("erro");
+      });
 
     // storage
     //   .ref(`imagens/${foto.name}`)
@@ -81,6 +104,7 @@ function EventoCadastro() {
               <option>Teatro</option>
               <option>Show</option>
               <option>Evento</option>
+              <option>Aniversário</option>
             </select>
           </div>
 

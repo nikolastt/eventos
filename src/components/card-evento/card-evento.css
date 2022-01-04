@@ -1,0 +1,23 @@
+.card-text {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.btn {
+  background-color: #614ea6;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #f21667;
+  color: #fff;
+}
+
+.card-rodape {
+  color: #614ea6;
+}
+
+.card-img-top {
+  max-height: 200px;
+  min-width: 100%;
+}
