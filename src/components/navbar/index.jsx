@@ -48,7 +48,11 @@ function NavBar() {
               </>
             ) : (
               <>
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/evento-cadastro"
+                >
                   Criar evento
                 </Link>
                 <Link className="nav-link active" aria-current="page" to="/">
