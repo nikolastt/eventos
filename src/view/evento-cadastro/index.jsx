@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import NavBar from "../../components/navbar";
 import "./evento-cadastro.css";
 import { useSelector } from "react-redux";
-import { ref, getStorage, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  getStorage,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 function EventoCadastro() {
@@ -15,62 +20,67 @@ function EventoCadastro() {
   const [hora, setHora] = useState();
   const [foto, setFoto] = useState();
   const usuarioEmail = useSelector((state) => state.usuarioEmail);
-
   const storage = getStorage(firebase);
   const db = getFirestore(firebase);
 
   function PublicarEvento() {
-    const fotoRef = ref(storage, `imagens/vacas/${foto.name || "semImagem"} `);
-    uploadBytes(fotoRef, foto)
-      .then((resposta) => {
-        const url = getDownloadURL(fotoRef).then((url) => {
-          console.log(url);
+    const storageRef = ref(storage, `imagens/${foto.name || "Sem imagem"}`);
+    const uploadTask = uploadBytesResumable(storageRef, foto);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      },
+      (error) => {
+        console.log(error);
+      },
+
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          addDoc(collection(db, "eventos"), {
+            titulo,
+            tipo,
+            descricao,
+            data,
+            hora,
+            foto: foto.name,
+            usuarioEmail: usuarioEmail,
+            visualizacoes: 0,
+            url: downloadURL,
+          }).catch((error) => setMsgTipo("error"));
+          setMsgTipo("sucesso");
         });
+      }
+    );
+    // const fotoRef = ref(storage, `imagens/vacas/${foto.name || "semImagem"} `);
+    // uploadBytes(fotoRef, foto)
+    //   .then((resposta) => {
+    //     getDownloadURL(fotoRef).then((uurl) => {
+    //       setUrl(uurl);
+    //     });
 
-        const docRef = addDoc(collection(db, "eventos"), {
-          titulo,
-          tipo,
-          descricao,
-          data,
-          hora,
-          foto: foto.name,
-          usuarioEmail: usuarioEmail,
-          visitantes: 0,
-        }).catch((error) => setMsgTipo("error"));
+    // {
+    //   console.log(urlAux);
+    //   console.log("2");
+    // addDoc(collection(db, "eventos"), {
+    //   titulo,
+    //   tipo,
+    //   descricao,
+    //   data,
+    //   hora,
+    //   foto: foto.name,
+    //   usuarioEmail: usuarioEmail,
+    //   visitantes: 0,
+    //   url: url,
+    // }).catch((error) => setMsgTipo("error"));
 
-        console.log(usuarioEmail);
-        console.log("teste");
-        console.log(resposta);
-        setMsgTipo("sucesso");
-      })
-      .catch((error) => {
-        setMsgTipo("erro");
-      });
+    //   setMsgTipo("sucesso");
+    // }
 
-    // storage
-    //   .ref(`imagens/${foto.name}`)
-    //   .put(foto)
-    //   .then(() => {
-    //     db.collecton("eventos")
-    //       .add({
-    //         titulo: titulo,
-    //         tipo: tipo,
-    //         descricao: descricao,
-    //         data: data,
-    //         hora: hora,
-    //         usuario: usuarioEmail,
-    //         visualizacoes: 0,
-    //         foto: foto.name,
-    //         publico: 1,
-    //         criacao: new Date(),
-    //       })
-    //       .then(() => {
-    //         setMsgTipo("sucesso");
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     setMsgTipo("erro");
-    //   });
+    // setTimeout(() => {
+    //   upload();
+    // }, 5000);
   }
 
   return (
