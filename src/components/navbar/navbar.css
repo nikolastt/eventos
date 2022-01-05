@@ -13,3 +13,6 @@
 .nav-item a:hover {
   color: #f21667;
 }
+.navbar-title {
+  text-decoration: none;
+}

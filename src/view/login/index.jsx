@@ -35,12 +35,12 @@ function Login() {
   }
 
   return (
-    <>
+    <div className="login">
+      <NavBar />
       {useSelector((state) => state.usuarioLogado) > 0 ? (
         <Navigate to="/" />
       ) : null}
 
-      <NavBar />
       <div className="login-content d-flex align-items-center ">
         <form className="mx-auto w-35">
           <div className="text-center mb-4">
@@ -65,7 +65,7 @@ function Login() {
 
           <button
             onClick={logar}
-            className="w-100 btn btn-lg btn-login"
+            className="w-100 btn btn-lg  btn-login "
             type="button"
           >
             Logar
@@ -99,7 +99,7 @@ function Login() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

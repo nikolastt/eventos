@@ -163,14 +163,15 @@ function EventoCadastro() {
             Publicar Evento
           </button>
 
-          <div className="msg-login bg-success d-flex align-items-center justify-content-center rounded-3 col-5 mx-auto text-center mt-2 ">
+          <div className="msg-login bg-success d-flex align-items-center justify-content-center rounded-3 col-lg-5 col-md-7 col-xs-10 mx-auto text-center mt-2 ">
             {msgTipo === "sucesso" && (
               <span className="">
                 <strong>WoW!</strong> Evento publicado!
                 <span className="fs-4"> &#128526;</span>
               </span>
             )}
-
+          </div>
+          <div className="msg-login bg-error d-flex align-items-center justify-content-center rounded-3 col-5 mx-auto text-center mt-2">
             {msgTipo === "erro" && (
               <span>
                 <strong>Ops!</strong> Não foi possível publicar o evento!

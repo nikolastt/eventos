@@ -8,9 +8,9 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
-        <span className="navbar-title text-white  " href="#">
+        <Link className="navbar-title text-white  " to="/">
           Eventos
-        </span>
+        </Link>
 
         <button
           className="navbar-toggler"

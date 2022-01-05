@@ -103,7 +103,7 @@ function NovoUsuario() {
           ) : (
             <button
               onClick={Cadastrar}
-              className="w-100 mt-3 btn btn-lg btn-login"
+              className="w-100 mt-3 btn btn-lg btn-novo-usuario"
               type="button"
             >
               Cadastrar

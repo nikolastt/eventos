@@ -6,12 +6,12 @@
   margin: auto;
 }
 
-.btn-login {
+.btn-novo-usuario {
   background-color: #fff;
   color: #614ea6;
 }
 
-.btn-login:hover {
+.btn-novo-usuario:hover {
   background-color: #f21667;
   color: #fff;
 }

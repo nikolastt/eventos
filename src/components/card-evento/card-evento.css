@@ -3,12 +3,17 @@
   overflow: hidden;
 }
 
-.btn {
+.btn-cars-eventos {
   background-color: #614ea6;
   color: #fff;
 }
+.card-body {
+  height: 200px;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-.btn:hover {
+.btn-card-eventos:hover {
   background-color: #f21667;
   color: #fff;
 }
@@ -17,7 +22,11 @@
   color: #614ea6;
 }
 
-.card-img-top {
-  max-height: 200px;
-  min-width: 100%;
+.img-cartao-img {
+  height: 200px;
+  width: 100%;
+}
+
+.card-total {
+  width: 100%;
 }

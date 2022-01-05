@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import RecuperarSenha from "./view/recuperar-senha";
 import EventoCadastro from "./view/evento-cadastro";
+import "./app.css";
 
 function App() {
   return (
