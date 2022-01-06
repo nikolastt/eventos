@@ -4,11 +4,6 @@
   min-height: 100vh;
 }
 
-.form-control-home {
+.form-control-meus-eventos {
   border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.pesquisa {
-  justify-content: center;
 }

@@ -1,6 +1,8 @@
 .login-content {
   width: 100%;
-  background-color: #614ea6;
+  background-image: linear-gradient(to bottom, #02031a 55%, #006868);
+  background-attachment: fixed;
+  min-height: 100vh;
   padding: 5%;
   margin: auto;
 }
@@ -8,13 +10,18 @@
   max-height: 100vh;
 }
 
+.form-control {
+  background-color: #01021475;
+  border: none;
+}
+
 .btn-login {
-  background-color: white;
-  color: #614ea6;
+  background-color: #8b0f32;
+  color: white;
 }
 
 .btn-login:hover {
-  background-color: #f21667;
+  background-color: #c9012cbb;
   color: #fff;
 }
 
@@ -25,5 +32,5 @@
 }
 
 .opcoes-login a:hover {
-  color: #f21667;
+  color: #8b0f32;
 }

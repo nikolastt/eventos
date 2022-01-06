@@ -22,8 +22,10 @@ function EventoCadastro() {
   const usuarioEmail = useSelector((state) => state.usuarioEmail);
   const storage = getStorage(firebase);
   const db = getFirestore(firebase);
+  const [carregando, setCarregando] = useState(false);
 
   function PublicarEvento() {
+    setCarregando(true);
     const storageRef = ref(storage, `imagens/${foto.name || "Sem imagem"}`);
     const uploadTask = uploadBytesResumable(storageRef, foto);
     uploadTask.on(
@@ -33,6 +35,7 @@ function EventoCadastro() {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       (error) => {
+        setCarregando(false);
         console.log(error);
       },
 
@@ -48,39 +51,15 @@ function EventoCadastro() {
             usuarioEmail: usuarioEmail,
             visualizacoes: 0,
             url: downloadURL,
-          }).catch((error) => setMsgTipo("error"));
+          }).catch((error) => {
+            setMsgTipo("error");
+            setCarregando(false);
+          });
+          setCarregando(false);
           setMsgTipo("sucesso");
         });
       }
     );
-    // const fotoRef = ref(storage, `imagens/vacas/${foto.name || "semImagem"} `);
-    // uploadBytes(fotoRef, foto)
-    //   .then((resposta) => {
-    //     getDownloadURL(fotoRef).then((uurl) => {
-    //       setUrl(uurl);
-    //     });
-
-    // {
-    //   console.log(urlAux);
-    //   console.log("2");
-    // addDoc(collection(db, "eventos"), {
-    //   titulo,
-    //   tipo,
-    //   descricao,
-    //   data,
-    //   hora,
-    //   foto: foto.name,
-    //   usuarioEmail: usuarioEmail,
-    //   visitantes: 0,
-    //   url: url,
-    // }).catch((error) => setMsgTipo("error"));
-
-    //   setMsgTipo("sucesso");
-    // }
-
-    // setTimeout(() => {
-    //   upload();
-    // }, 5000);
   }
 
   return (
@@ -155,13 +134,21 @@ function EventoCadastro() {
             />
           </div>
 
-          <button
-            onClick={PublicarEvento}
-            className="w-100 mt-2 btn btn-lg btn-evento-cadastro"
-            type="button"
-          >
-            Publicar Evento
-          </button>
+          {carregando ? (
+            <div className="spinner mt-3  text-center">
+              <div className="spinner-grow  text-dark" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={PublicarEvento}
+              className="w-100 mt-2 btn btn-lg btn-evento-cadastro"
+              type="button"
+            >
+              Publicar Evento
+            </button>
+          )}
 
           <div className="msg-login bg-success d-flex align-items-center justify-content-center rounded-3 col-lg-5 col-md-7 col-xs-10 mx-auto text-center mt-2 ">
             {msgTipo === "sucesso" && (
@@ -171,7 +158,7 @@ function EventoCadastro() {
               </span>
             )}
           </div>
-          <div className="msg-login bg-error d-flex align-items-center justify-content-center rounded-3 col-5 mx-auto text-center mt-2">
+          <div className="msg-login bg-danger d-flex align-items-center justify-content-center rounded-3 col-5 mx-auto text-center mt-2">
             {msgTipo === "erro" && (
               <span>
                 <strong>Ops!</strong> Não foi possível publicar o evento!

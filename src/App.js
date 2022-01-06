@@ -8,6 +8,7 @@ import store from "./store";
 import RecuperarSenha from "./view/recuperar-senha";
 import EventoCadastro from "./view/evento-cadastro";
 import "./app.css";
+import MeusEventos from "./view/meus-eventos";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/meus-eventos" element={<MeusEventos />} />
           <Route exact path="/novousuario" element={<NovoUsuario />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/recuperar-senha" element={<RecuperarSenha />} />

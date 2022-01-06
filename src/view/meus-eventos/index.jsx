@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import CardEvento from "../../components/card-evento";
 import NavBar from "../../components/navbar";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  getFirestore,
+  where,
+} from "firebase/firestore";
 import firebase from "../../config/firebase";
+import { useSelector } from "react-redux";
 
-import "./home.css";
+import "./meus-eventos.css";
 
-function Home({ match }) {
+function MeusEventos() {
   const [eventos, setEventos] = useState([]);
   const listaEventos = [];
   const [pesquisa, setPesquisa] = useState("");
 
+  const usuarioEmail = useSelector((state) => state.usuarioEmail);
+
   useEffect(() => {
     const db = getFirestore(firebase);
     const colref = collection(db, "eventos");
-
-    getDocs(colref).then((snapshot) => {
+    const q = query(colref, where("usuarioEmail", "==", usuarioEmail));
+    getDocs(q).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         if (
           doc.data().titulo.indexOf(pesquisa) >= 0 ||
@@ -35,17 +44,15 @@ function Home({ match }) {
     <div className="home">
       <NavBar />
 
-      <div className="row pesquisa d-flex  col-12 m-0 p-4">
-        <div className="input col-7">
-          <input
-            onChange={(e) => {
-              setPesquisa(e.target.value);
-            }}
-            type="text"
-            className="form-control form-control-home text-center"
-            placeholder="Pesquisar evento"
-          />
-        </div>
+      <div className="row pesquisa  w-100 m-0 p-4">
+        <input
+          onChange={(e) => {
+            setPesquisa(e.target.value);
+          }}
+          type="text"
+          className="form-control form-control-meus-eventos text-center"
+          placeholder="Pesquisar evento"
+        />
       </div>
 
       <div className="d-flex flex-wrap w-100   justify-content-around">
@@ -64,4 +71,4 @@ function Home({ match }) {
   );
 }
 
-export default Home;
+export default MeusEventos;

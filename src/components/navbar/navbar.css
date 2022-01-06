@@ -1,18 +1,19 @@
 .navbar {
-  background-color: #614ea6;
+  background-color: #020211;
 }
 
-.navbar-title {
-  font-weight: bold;
+.icon-calendario:hover {
+  color: #008080;
+}
+
+.nav-item a:hover {
+  color: #008080;
 }
 
 .nav-item a {
   color: white;
 }
 
-.nav-item a:hover {
-  color: #f21667;
-}
-.navbar-title {
-  text-decoration: none;
+.show {
+  margin-left: 15px;
 }

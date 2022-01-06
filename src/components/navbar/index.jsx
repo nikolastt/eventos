@@ -6,70 +6,71 @@ import { useSelector, useDispatch } from "react-redux";
 function NavBar() {
   const dispatch = useDispatch();
   return (
-    <nav className="navbar navbar-expand-lg ">
-      <div className="container-fluid">
-        <Link className="navbar-title text-white  " to="/">
-          Eventos
-        </Link>
+    <nav class="navbar navbar-expand-lg ">
+      <Link className="navbar-title col-2 text-center text-white  " to="/">
+        <i className="fas icon-calendario p-2 fa-2x fa-calendar-check"></i>
+      </Link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#conteudoNavbarSuportado"
+        aria-controls="conteudoNavbarSuportado"
+        aria-expanded="false"
+        aria-label="Alterna navegação"
+      >
+        <i className="fas fa-bars mx-4 text-white"></i>
+      </button>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i className="fas fa-bars text-white"></i>{" "}
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav nav-item">
-            <Link className="nav-link active" aria-current="page" to="/">
-              Home
+      <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav w-100">
+          <li class="nav-item active ">
+            <Link
+              className="nav-link active col-2  "
+              aria-current="page"
+              to="/"
+            >
+              <i className="fas fa-home"></i>
             </Link>
+          </li>
+          {useSelector((state) => state.usuarioLogado) === 0 ? (
+            <>
+              <div className="sigIn navbar-collapse col-11  justify-content-end ">
+                <li class="nav-item">
+                  <Link class="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
 
-            {useSelector((state) => state.usuarioLogado) === 0 ? (
-              <>
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/login"
-                >
-                  Login
-                </Link>
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/novousuario"
-                >
-                  Cadastrar
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/evento-cadastro"
-                >
+                <li class="nav-item">
+                  <Link class="nav-link" to="/usuario-novo">
+                    Cadastrar
+                  </Link>
+                </li>
+              </div>
+            </>
+          ) : (
+            <>
+              <li class="nav-item">
+                <Link class="nav-link" to="/evento-cadastro">
                   Criar evento
                 </Link>
-                <Link className="nav-link active" aria-current="page" to="/">
-                  Meus eventos
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/meus-evento">
+                  Meus Eventos
                 </Link>
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/"
-                  onClick={() => dispatch({ type: "LOG_OUT" })}
-                >
+              </li>
+
+              <li class="nav-item navbar-collapse justify-content-end">
+                <Link class="nav-link mr-5" to="/">
                   Sair
                 </Link>
-              </>
-            )}
-          </div>
-        </div>
+              </li>
+            </>
+          )}
+        </ul>
       </div>
     </nav>
   );

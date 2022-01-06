@@ -35,71 +35,75 @@ function Login() {
   }
 
   return (
-    <div className="login">
+    <>
       <NavBar />
-      {useSelector((state) => state.usuarioLogado) > 0 ? (
-        <Navigate to="/" />
-      ) : null}
+      <div className="login col-12 d-flex p-0">
+        {useSelector((state) => state.usuarioLogado) > 0 ? (
+          <Navigate to="/" />
+        ) : null}
 
-      <div className="login-content d-flex align-items-center ">
-        <form className="mx-auto w-35">
-          <div className="text-center mb-4">
-            <h1 className="h3 mb-3 fw-normal text-white fw-bold">Login</h1>
+        <div className="login-content d-flex w-100 align-items-center justify-content-center ">
+          <div class="card w-100 d-flex">
+            <form className="mx-auto my-5 h-100 align-items-center px-3 w-100">
+              <div className="text-center mb-4">
+                <h1 className="h3 mb-3 fw-normal text-white fw-bold">Login</h1>
+              </div>
+
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className="form-control my-2"
+                id="floatingInput"
+                placeholder="email@exemplo.com"
+              />
+
+              <input
+                onChange={(e) => setSenha(e.target.value)}
+                type="password"
+                className="form-control my-2"
+                id="floatingPassword"
+                placeholder="Senha"
+              />
+
+              <button
+                onClick={logar}
+                className="w-100 btn btn-lg  btn-login "
+                type="button"
+              >
+                Logar
+              </button>
+
+              <div className="msg-login text-white text-center my-5 ">
+                {msgTipo === "sucesso" && (
+                  <span>
+                    <strong>WoW!</strong> Você está conectado.
+                    <span className="fs-4"> &#128526;</span>
+                  </span>
+                )}
+
+                {msgTipo === "erro" && (
+                  <span>
+                    <strong>Ops!</strong> Verifique se a senha e usuário estão
+                    corretos.
+                    <span className="fs-4"> &#128546;</span>
+                  </span>
+                )}
+              </div>
+
+              <div className="opcoes-login text-center">
+                <Link to="/recuperar-senha" className="mx-2">
+                  Recuperar senha
+                </Link>
+                <span className="text-white">&#9733;</span>
+                <Link to="/novousuario" className="mx-2">
+                  Quero cadastrar
+                </Link>
+              </div>
+            </form>
           </div>
-
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            className="form-control my-2"
-            id="floatingInput"
-            placeholder="name@example.com"
-          />
-
-          <input
-            onChange={(e) => setSenha(e.target.value)}
-            type="password"
-            className="form-control my-2"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-
-          <button
-            onClick={logar}
-            className="w-100 btn btn-lg  btn-login "
-            type="button"
-          >
-            Logar
-          </button>
-
-          <div className="msg-login text-white text-center my-5 ">
-            {msgTipo === "sucesso" && (
-              <span>
-                <strong>WoW!</strong> Você está conectado.
-                <span className="fs-4"> &#128526;</span>
-              </span>
-            )}
-
-            {msgTipo === "erro" && (
-              <span>
-                <strong>Ops!</strong> Verifique se a senha e usuário estão
-                corretos.
-                <span className="fs-4"> &#128546;</span>
-              </span>
-            )}
-          </div>
-
-          <div className="opcoes-login text-center">
-            <Link to="/recuperar-senha" className="mx-2">
-              Recuperar senha
-            </Link>
-            <span className="text-white">&#9733;</span>
-            <Link to="/novousuario" className="mx-2">
-              Quero cadastrar
-            </Link>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

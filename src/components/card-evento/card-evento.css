@@ -1,44 +1,74 @@
 .card {
-  max-width: 350px;
   width: 100%;
-  height: 400px;
-}
-
-.card-imagem {
-  height: 50%;
-  overflow: hidden;
-  width: 100%;
-}
-
-.card-img {
-  object-fit: cover;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.btn-card-eventos {
-  background-color: #614ea6;
-  height: 100%;
-}
-
-.btn-card-eventos {
-  background-color: #614ea6;
+  max-width: 316px;
   color: white;
+  height: 390px;
+  background-color: #79797927;
 }
 
-.btn-card-eventos:hover {
-  background-color: #f21667;
-  color: #fff;
+@media (max-width: 576px) {
+  .card {
+    width: 276px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    margin: auto;
+  }
+}
+
+.card-img-top {
+  max-height: 200px;
+  min-width: 100%;
+  object-fit: cover;
+  height: 50%;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .card-body {
+  width: 100%;
   height: 35%;
+  overflow: hidden;
+}
+
+.card-descricao {
+  overflow: scroll;
+  height: 100%;
+}
+
+.card-descricao::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.card-descricao::-webkit-scrollbar {
+  width: 6px;
+  height: 0.1px;
+}
+.card-descricao::-webkit-scrollbar-thumb {
+  background: transparent;
+  height: 15px;
+  border-radius: 10px;
 }
 
 .card-footer {
+  display: flex;
+  align-items: center;
   height: 15%;
+  border: none;
 }
 
 .icon {
-  color: #614ea6;
+  color: #008080;
+}
+
+.btn-card-eventos {
+  background-color: #8b0f32;
+  height: 100%;
+  color: white;
+  border: none;
+}
+
+.btn-card-eventos:hover {
+  background-color: #e60234;
+  color: #fff;
 }
