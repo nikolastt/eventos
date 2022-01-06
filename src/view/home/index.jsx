@@ -30,13 +30,15 @@ function Home() {
       <NavBar />
       <div className="d-flex  flex-wrap justify-content-center">
         {eventos.map((item) => (
-          <CardEvento
-            titulo={item.titulo}
-            descricao={item.descricao}
-            key={item.id}
-            url={item.url}
-            visualizacoes={item.visualizacoes}
-          />
+          <>
+            <CardEvento
+              titulo={item.titulo}
+              descricao={item.descricao}
+              key={item.id}
+              url={item.url}
+              visualizacoes={item.visualizacoes}
+            />
+          </>
         ))}
       </div>
     </div>
