@@ -154,7 +154,7 @@ function Login() {
         ) : null}
 
         <div className="login-content d-flex w-100 align-items-center justify-content-center ">
-          <div class="card card-login w-100 d-flex">
+          <div className="card card-login w-100 d-flex">
             <form className="mx-auto my-5 h-100 align-items-center px-3 w-100">
               <div className="text-center mb-4">
                 <h1 className="h3 mb-3 fw-normal text-white fw-bold">Login</h1>
