@@ -1,17 +1,16 @@
 import React from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function NavBar() {
-  const dispatch = useDispatch();
   return (
-    <nav class="navbar navbar-expand-lg ">
+    <nav className="navbar navbar-expand-lg ">
       <Link className="navbar-title col-2 text-center text-white  " to="/">
         <i className="fas icon-calendario p-2 fa-2x fa-calendar-check"></i>
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#conteudoNavbarSuportado"
@@ -22,9 +21,9 @@ function NavBar() {
         <i className="fas fa-bars mx-4 text-white"></i>
       </button>
 
-      <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav w-100">
-          <li class="nav-item active ">
+      <div className="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul className="navbar-nav w-100">
+          <li className="nav-item active ">
             <Link
               className="nav-link active col-2  "
               aria-current="page"
@@ -36,14 +35,14 @@ function NavBar() {
           {useSelector((state) => state.usuarioLogado) === 0 ? (
             <>
               <div className="sigIn navbar-collapse col-11  justify-content-end ">
-                <li class="nav-item">
-                  <Link class="nav-link" to="/login">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
                     Login
                   </Link>
                 </li>
 
-                <li class="nav-item">
-                  <Link class="nav-link" to="/usuario-novo">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/novousuario">
                     Cadastrar
                   </Link>
                 </li>
@@ -51,20 +50,20 @@ function NavBar() {
             </>
           ) : (
             <>
-              <li class="nav-item">
-                <Link class="nav-link" to="/evento-cadastro">
+              <li className="nav-item">
+                <Link className="nav-link" to="/evento-cadastro">
                   Criar evento
                 </Link>
               </li>
 
-              <li class="nav-item">
-                <Link class="nav-link" to="/meus-evento">
+              <li className="nav-item">
+                <Link className="nav-link" to="/meus-evento">
                   Meus Eventos
                 </Link>
               </li>
 
-              <li class="nav-item navbar-collapse justify-content-end">
-                <Link class="nav-link mr-5" to="/">
+              <li className="nav-item navbar-collapse justify-content-end">
+                <Link className="nav-link mr-5" to="/">
                   Sair
                 </Link>
               </li>

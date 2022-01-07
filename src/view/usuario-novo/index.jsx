@@ -66,13 +66,13 @@ function NovoUsuario() {
   return (
     <div>
       <NavBar />
-      <div className="login col-12 d-flex p-0">
+      <div className="cadastro col-12 d-flex p-0">
         {useSelector((state) =>
           state.usuarioLogado > 0 ? <Navigate to="/" /> : null
         )}
 
-        <div className="login-content d-flex w-100 align-items-center justify-content-center ">
-          <div class="card w-100 d-flex">
+        <div className="cadastro-content d-flex w-100 align-items-center justify-content-center ">
+          <div className="card card-cadastro w-100 d-flex">
             <form className="mx-auto my-5 h-100 align-items-center w-100 px-3">
               <div className="text-center mb-4">
                 <h1 className="h3 mb-3 fw-normal text-white fw-bold">

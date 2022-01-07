@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function CardEvento({ id, titulo, descricao, url, visualizacoes }) {
   return (
     <div className=" container d-flex justify-content-center  col-md-4 p-3 col-sm-6 col-xs-12 col-lg-3 ">
-      <div className="card shadow-lg">
+      <div className="card card-evento shadow-lg">
         <img src={url} className="card-img-top" alt="..." />
         <div className="card-body ">
           <div className="card-titulo ">

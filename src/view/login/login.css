@@ -1,3 +1,11 @@
+.card-login {
+  width: 100%;
+  max-width: 316px;
+  color: white;
+  height: 390px;
+  background-color: #79797927;
+}
+
 .login-content {
   width: 100%;
   background-image: linear-gradient(to bottom, #02031a 55%, #006868);
@@ -10,7 +18,7 @@
   max-height: 100vh;
 }
 
-.form-control {
+.form-control-login {
   background-color: #01021475;
   border: none;
 }

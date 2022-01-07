@@ -1,4 +1,4 @@
-.btn-evento-cadastro {
+/* .btn-evento-cadastro {
   background-color: #614ea6;
   color: #fff;
 }
@@ -6,4 +6,65 @@
 .btn-evento-cadastro:hover {
   background-color: #f21667;
   color: #fff;
+}
+
+.card {
+  min-width: 100%;
+} */
+
+.evento-cadastro {
+  height: 100vh;
+  background-image: linear-gradient(to bottom, #02031a 55%, #006868);
+  background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-evento-cadastro {
+  height: 90%;
+  background-color: #79797927;
+  overflow: hidden;
+}
+
+input[type="file"]:focus {
+  background-color: #01021147;
+}
+
+.label-css {
+  width: 100px;
+  height: 100px;
+  background-color: #01021147;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.custom-file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file::before {
+  content: "";
+}
+
+.btn-evento-cadastro {
+  background-color: #8b0f32;
+  color: white;
+}
+
+.btn-evento-cadastro:hover {
+  background-color: #c9012cbb;
+  color: white;
+}
+
+.custom-file {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card-evento-cadastro {
+    height: 90%;
+  }
+
+  .evento-cadastro {
+    height: 100%;
+    padding: 50px 0px 50px 0px;
+  }
 }
