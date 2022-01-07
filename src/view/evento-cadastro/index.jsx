@@ -52,7 +52,7 @@ function EventoCadastro() {
             visualizacoes: 0,
             url: downloadURL,
           }).catch((error) => {
-            setMsgTipo("error");
+            setMsgTipo("erro");
             setCarregando(false);
           });
           setCarregando(false);
@@ -67,7 +67,7 @@ function EventoCadastro() {
       <NavBar />
 
       <div className="evento-cadastro col-12 d-flex">
-        <div class="card card-evento-cadastro col-10 ">
+        <div className="card card-evento-cadastro col-10 ">
           <form className="mx-auto my-5 h-100 align-items-center px-3 w-100">
             <div className="text-center mb-4">
               <h1 className="h3 mb-3 fw-normal text-white fw-bold">
@@ -136,24 +136,24 @@ function EventoCadastro() {
             <div className="row  col-12 p-0 m-0 mobile-top">
               <div className="form-group  col-12 p-0 m-0 ">
                 <label
-                  for="formFileSm"
-                  class="form-label margin-sm text-center text-white"
+                  htmlFor="formFileSm"
+                  className="form-label margin-sm text-center text-white"
                 >
                   Upload da imagem.
                 </label>
                 <div className="row m-0 p-0 col-12 d-flex justify-content-center">
                   <label
-                    for="formFileSm"
-                    class="form-label d-flex justify-content-center align-items-center  label-css text-white"
+                    htmlFor="formFileSm"
+                    className="form-label d-flex justify-content-center align-items-center  label-css text-white"
                   >
-                    <i class="fas fa-images fa-3x fa-imagens"></i>
+                    <i className="fas fa-images fa-3x fa-imagens"></i>
                   </label>
                 </div>
 
                 <div className="row text-center d-flex">
                   <input
                     onChange={(e) => setFoto(e.target.files[0])}
-                    class="form-control  mr-5 col-12 form-control-sm custom-file"
+                    className="form-control  mr-5 col-12 form-control-sm custom-file"
                     id="formFileSm"
                     type="file"
                     accept="image/*"
@@ -163,7 +163,7 @@ function EventoCadastro() {
                 <div className="row">
                   {carregando ? (
                     <div className="spinner mt-3  text-center">
-                      <div className="spinner-grow  text-dark" role="status">
+                      <div className="spinner-border text-light" role="status">
                         <span className="visually-hidden">Loading...</span>
                       </div>
                     </div>
